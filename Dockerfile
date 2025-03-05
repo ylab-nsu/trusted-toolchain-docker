@@ -26,3 +26,20 @@ COPY ./bootstrap.cfg.docker /steps/bootstrap.cfg
 
 RUN ["/init"]
 
+## after live-bootstrap
+
+COPY ./steps-after/ /steps-after/
+COPY ./buildvars-cross.docker /steps-after/env/buildvars-cross
+
+RUN ["/bin/bash", "-ex", "/steps-after/init/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/download-distfiles/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/busybox-i386/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/cmake-3.31.5-i386/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/binutils-2.41-boot-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/gcc-13.3.0-boot-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/musl-1.2.5-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/linux-6.5.8-headers-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/libstdcpp-boot-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/binutils-2.41-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/gcc-13.3.0-x64/pass.sh"]
+RUN ["/bin/bash", "-ex", "/steps-after/llvm+clang-19.1.0-x64/pass.sh"]

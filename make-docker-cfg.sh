@@ -23,3 +23,13 @@ CONSOLES=False
 BUILD_LINUX=False
 EOL
 
+cat >buildvars-cross.docker <<EOL
+export I386_MUSL=i386-unknown-linux-musl
+export I386_ELF=i386-elf
+export X64_MUSL=x86_64-linux-musl
+export X64_ELF=x86_64-elf
+export I386_BUILDROOT=/after/x86
+export X64_BUILDROOT=/after/x86_64
+export JOBS=$jobs
+EOL
+
