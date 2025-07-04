@@ -26,3 +26,14 @@ COPY ./bootstrap.cfg.docker /steps/bootstrap.cfg
 
 RUN ["/init"]
 
+COPY ./patches/buildroot-global-patch-dir/ /buildroot-global-patch-dir/
+COPY ./patches/buildroot-patches/ /patches/buildroot-patches/
+
+COPY ./steps-after/ /steps-after/
+
+COPY ./buildroot.config /buildroot.config
+
+COPY ./init-after.sh /init-after.sh
+
+ENTRYPOINT ["/bin/bash", "-ex", "/init-after.sh"]
+
